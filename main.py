@@ -54,4 +54,13 @@ plt.show()
 sales_date['Month'] = sales_data['Date'].dt.month 
 sales_data['Year'] = sales_data['Date'].dt.year 
 
+monthly_seasonality = sales_data.groupby('Month')['Sales'].sum().reset_index()
 
+plt.figure(figsize=(10, 6))
+sns.lineplot(x='Month', y='Sales', data=monthly_seasonality, marker='o')
+plt.title('Sales Seasonality by Month')
+plt.xlabel('Month')
+plt.ylabel('Total Sales')
+plt.xticks(ticks=np.arange(1, 13), labels=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
+plt.grid(True)
+plt.show()
